@@ -1,146 +1,104 @@
 <template>
-    <div style="height: 100vh; position: relative">
-        <n-layout position="absolute">
-            <n-layout-header class="header">
-                <div style="margin-left: auto">
-                    <n-space>
-                        <n-button size="small" quaternary @click="showAPIKeyModal">
-                            <template #icon>
-                                <n-icon>
-                                    <BuildOutline />
-                                </n-icon>
-                            </template>
-                            Set API Key
-                        </n-button>
-                        <n-button size="small" quaternary @click="themeStore.toggleTheme">
-                            <template #icon>
-                                <n-icon>
-                                    <Sunny v-if="themeStore.isDarkTheme" />
-                                    <Moon v-else />
-                                </n-icon>
-                            </template>
-                            Toggle Theme
-                        </n-button>
-                    </n-space>
-                </div>
-            </n-layout-header>
-            <n-layout has-sider position="absolute" style="top: 4em; bottom: 4em">
-                <n-layout :native-scrollbar="false">
-                    <div class="content">
-                        <n-gradient-text class="title" type="success">PromptCraft</n-gradient-text>
-                        <n-space class="main-body" vertical>
-                            <n-form inline>
-                                <n-form-item label="Your Prompt">
-                                    <n-input
-                                        class="textarea"
-                                        v-model:value="userPromptInput"
-                                        type="textarea"
-                                        show-feedback="false"
-                                        :autosize="autoSize"
-                                        :validation-status="userInputStatus"
-                                        :feedback="userInputFeedback"
-                                    />
-                                </n-form-item>
-                                <n-form-item label="Improved Prompt">
-                                    <n-spin :show="isPromptLoading" description="Crafting your prompt...">
-                                        <n-input
-                                            class="textarea"
-                                            v-model:value="improvedPromptComputed"
-                                            type="textarea"
-                                            placeholder="Nothing Here"
-                                            show-feedback="false"
-                                            :autosize="autoSize"
-                                        />
-                                    </n-spin>
-                                </n-form-item>
-                            </n-form>
+    <div class="content">
+        <n-gradient-text class="title" type="success">PromptCraft</n-gradient-text>
+        <n-space class="main-body" vertical>
+            <n-form inline>
+                <n-form-item label="Your Prompt">
+                    <n-input
+                        class="textarea"
+                        v-model:value="userPromptInput"
+                        type="textarea"
+                        show-feedback="false"
+                        :autosize="autoSize"
+                        :validation-status="userInputStatus"
+                        :feedback="userInputFeedback"
+                    />
+                </n-form-item>
+                <n-form-item label="Improved Prompt">
+                    <n-spin :show="isPromptLoading" description="Crafting your prompt...">
+                        <n-input
+                            class="textarea"
+                            v-model:value="improvedPromptComputed"
+                            type="textarea"
+                            placeholder="Nothing Here"
+                            show-feedback="false"
+                            :autosize="autoSize"
+                        />
+                    </n-spin>
+                </n-form-item>
+            </n-form>
 
-                            <n-form inline>
-                                <n-form-item label="Response 1">
-                                    <n-spin :show="isFirstResLoading" description="Waiting Response...">
-                                        <n-input
-                                            class="textarea"
-                                            v-model:value="userPromptResponseComputed"
-                                            type="textarea"
-                                            placeholder="Nothing Here"
-                                            :autosize="autoSize"
-                                        />
-                                    </n-spin>
-                                </n-form-item>
-                                <n-form-item label="Response 2">
-                                    <n-spin :show="isSecondResLoading" description="Waiting Response...">
-                                        <n-input
-                                            class="textarea"
-                                            v-model:value="improvedPromptResponseComputed"
-                                            type="textarea"
-                                            placeholder="Nothing Here"
-                                            :autosize="autoSize"
-                                        />
-                                    </n-spin>
-                                </n-form-item>
-                            </n-form>
+            <n-form inline>
+                <n-form-item label="Response 1">
+                    <n-spin :show="isFirstResLoading" description="Waiting Response...">
+                        <n-input
+                            class="textarea"
+                            v-model:value="userPromptResponseComputed"
+                            type="textarea"
+                            placeholder="Nothing Here"
+                            :autosize="autoSize"
+                        />
+                    </n-spin>
+                </n-form-item>
+                <n-form-item label="Response 2">
+                    <n-spin :show="isSecondResLoading" description="Waiting Response...">
+                        <n-input
+                            class="textarea"
+                            v-model:value="improvedPromptResponseComputed"
+                            type="textarea"
+                            placeholder="Nothing Here"
+                            :autosize="autoSize"
+                        />
+                    </n-spin>
+                </n-form-item>
+            </n-form>
 
-                            <n-grid cols="10" style="margin-bottom: 2em" x-gap="18">
-                                <n-gi span="3" offset="2">
-                                    <n-button block secondary type="Error">
-                                        <template #icon>
-                                            <n-icon>
-                                                <TrashBinOutline />
-                                            </n-icon>
-                                        </template>
-                                        Clear All
-                                    </n-button>
-                                </n-gi>
-                                <n-gi span="3" offset="">
-                                    <n-button block secondary type="primary" @click="handleSubmit">
-                                        <template #icon>
-                                            <n-icon>
-                                                <BulbOutline />
-                                            </n-icon>
-                                        </template>
-                                        Craft & Compare
-                                    </n-button>
-                                </n-gi>
-                            </n-grid>
+            <n-grid cols="10" style="margin-bottom: 2em" x-gap="18">
+                <n-gi span="3" offset="2">
+                    <n-button block secondary type="Error">
+                        <template #icon>
+                            <n-icon>
+                                <TrashBinOutline />
+                            </n-icon>
+                        </template>
+                        Clear All
+                    </n-button>
+                </n-gi>
+                <n-gi span="3" offset="">
+                    <n-button block secondary type="primary" @click="handleSubmit">
+                        <template #icon>
+                            <n-icon>
+                                <BulbOutline />
+                            </n-icon>
+                        </template>
+                        Craft & Compare
+                    </n-button>
+                </n-gi>
+            </n-grid>
 
-                            <n-collapse-transition class="feedback" :show="showFeedback">
-                                <n-card bordered style="max-width: 858px">
-                                    <template #header> Feedback </template>
-                                    <div v-if="isPromptLoading">
-                                        <n-skeleton text :repeat="2" />
-                                        <n-skeleton text style="width: 60%" />
-                                    </div>
-                                    <div v-else>
-                                        {{ promptFeedback }}
-                                    </div>
-                                </n-card>
-                            </n-collapse-transition>
-                        </n-space>
+            <n-collapse-transition class="feedback" :show="showFeedback">
+                <n-card bordered style="max-width: 858px">
+                    <template #header> Feedback </template>
+                    <div v-if="isPromptLoading">
+                        <n-skeleton text :repeat="2" />
+                        <n-skeleton text style="width: 60%" />
                     </div>
-                </n-layout>
-            </n-layout>
-            <n-layout-footer class="footer" position="absolute">
-                <n-text depth="3"> Copyright © 2023 &nbsp|&nbsp Gao Zesen </n-text>
-            </n-layout-footer>
-        </n-layout>
+                    <div v-else>
+                        {{ promptFeedback }}
+                    </div>
+                </n-card>
+            </n-collapse-transition>
+        </n-space>
     </div>
-
-    <n-modal v-model:show="isAPIKeyModalVisible" preset="card" title="Set OpenAI API Key" style="width: 500px">
-        <n-input v-model:value="apiKey" placeholder="Input your OpenAI API Key Here" />
-        <template #footer>
-            <n-space justify="end">
-                <n-button secondary type="primary" @click="isAPIKeyModalVisible = false"> Confirm </n-button>
-            </n-space>
-        </template>
-    </n-modal>
 </template>
 
 <script setup lang="ts">
-import { BulbOutline, Sunny, Moon, TrashBinOutline, BuildOutline } from '@vicons/ionicons5';
+import { BulbOutline, TrashBinOutline } from '@vicons/ionicons5';
 import { OpenAI } from 'openai';
 import { useMessage } from 'naive-ui';
 
-const themeStore = useThemeStore();
+const generalStore = useGeneralStore();
+
 const message = useMessage();
 
 const userPromptInput = ref('');
@@ -170,14 +128,9 @@ const isPromptLoading = ref(false);
 const isFirstResLoading = ref(false);
 const isSecondResLoading = ref(false);
 
-const isAPIKeyModalVisible = ref(false);
-const apiKey = ref('');
-function showAPIKeyModal() {
-    isAPIKeyModalVisible.value = true;
-}
 
 const openai = new OpenAI({
-    apiKey: apiKey.value,
+    apiKey: generalStore.apiKey,
     dangerouslyAllowBrowser: true
 });
 
@@ -196,7 +149,7 @@ The user inputted prompt is above, now try to improve it and return in given JSO
 const gpt3ModelName = 'gpt-3.5-turbo-1106';
 
 async function openaiRequest(systemPrompt: string, contentPrompt: string, isJsonMode: boolean = false, model: string = 'gpt-4-1106-preview') {
-    openai.apiKey = apiKey.value;
+    openai.apiKey = generalStore.apiKey;
 
     if (isJsonMode) {
         try {
@@ -235,6 +188,12 @@ async function openaiRequest(systemPrompt: string, contentPrompt: string, isJson
 }
 
 function handleSubmit() {
+    if (generalStore.apiKey === '') {
+        message.error('Please set your OpenAI API Key first');
+        generalStore.isAPIKeyModalVisible = true;
+        return;
+    }
+
     if (userPromptInput.value === '') {
         userInputStatus.value = 'error';
         userInputFeedback.value = 'Please input your prompt first';
@@ -285,31 +244,17 @@ function handleSubmit() {
 .title {
     font-size: 4em;
     font-weight: 700;
-    margin: 8rem 0 1em 0;
+    margin: 4rem 0 1em 0;
     user-select: none;
 }
+
 .content {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 9em 0 4em 0;
     height: calc(100vh - 8em);
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 4em;
-    padding: 1em;
-}
-
-.footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 4em;
-    padding: 1em;
 }
 
 .textarea {

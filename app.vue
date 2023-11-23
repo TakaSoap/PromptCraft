@@ -1,14 +1,12 @@
 <template>
-    <n-config-provider
-        :theme="themeStore.theme"
-        :locale="enGB"
-        :date-locale="dateEnGB"
-    >
+    <n-config-provider :theme="generalStore.theme" :locale="enGB" :date-locale="dateEnGB">
         <n-loading-bar-provider>
             <n-message-provider>
                 <n-notification-provider>
                     <n-dialog-provider>
-                        <NuxtPage />
+                        <NuxtLayout>
+                            <NuxtPage />
+                        </NuxtLayout>
                     </n-dialog-provider>
                 </n-notification-provider>
             </n-message-provider>
@@ -17,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { useThemeStore } from './stores/theme';
+import { useGeneralStore } from './stores/general';
 import { enGB, dateEnGB } from 'naive-ui';
 
-const themeStore = useThemeStore();
-
+const generalStore = useGeneralStore();
 </script>
+./stores/general

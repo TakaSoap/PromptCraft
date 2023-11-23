@@ -2,7 +2,7 @@ import { darkTheme, useOsTheme } from 'naive-ui';
 import type { BuiltInGlobalTheme } from 'naive-ui/lib/themes/interface';
 import { defineStore } from 'pinia';
 
-export const useThemeStore = defineStore('themeController', () => {
+export const useGeneralStore = defineStore('general', () => {
     const osThemeRef = useOsTheme();
 
     console.log(osThemeRef.value);
@@ -15,5 +15,8 @@ export const useThemeStore = defineStore('themeController', () => {
         theme.value = isDarkTheme.value ? darkTheme : null;
     }
 
-    return { theme, isDarkTheme, toggleTheme };
+    const apiKey = ref('');
+    const isAPIKeyModalVisible = ref(false);
+
+    return { theme, isDarkTheme, toggleTheme, apiKey, isAPIKeyModalVisible };
 });
