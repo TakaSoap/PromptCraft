@@ -244,7 +244,7 @@ function handleSubmit() {
 .title {
     font-size: 4em;
     font-weight: 700;
-    margin: 4rem 0 1em 0;
+    margin: 8rem 0 1em 0;
     user-select: none;
 }
 
@@ -253,7 +253,6 @@ function handleSubmit() {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 9em 0 4em 0;
     height: calc(100vh - 8em);
 }
 
