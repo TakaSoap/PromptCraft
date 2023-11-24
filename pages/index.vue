@@ -55,7 +55,7 @@
 
             <n-grid cols="10" style="margin-bottom: 2em" x-gap="18">
                 <n-gi span="3" offset="2">
-                    <n-button block secondary type="Error">
+                    <n-button block secondary type="Error" @click="clearAll">
                         <template #icon>
                             <n-icon>
                                 <TrashBinOutline />
@@ -127,7 +127,6 @@ const showFeedback = ref(false);
 const isPromptLoading = ref(false);
 const isFirstResLoading = ref(false);
 const isSecondResLoading = ref(false);
-
 
 const openai = new OpenAI({
     apiKey: generalStore.apiKey,
@@ -237,6 +236,17 @@ function handleSubmit() {
         }
         isFirstResLoading.value = false;
     });
+}
+
+function clearAll() {
+    userPromptInput.value = '';
+    improvedPrompt.value = '';
+    userPromptResponse.value = '';
+    improvedPromptResponse.value = '';
+    promptFeedback.value = '';
+    showFeedback.value = false;
+    userInputStatus.value = '';
+    userInputFeedback.value = '';
 }
 </script>
 

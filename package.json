@@ -11,9 +11,18 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@vicons/ionicons5": "^0.12.0",
+    "eslint": "^8.54.0",
+    "eslint-config-standard-with-typescript": "^40.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^9.18.1",
     "naive-ui": "^2.35.0",
     "nuxt": "^3.8.2",
+    "typescript": "*",
     "vfonts": "^0.0.3",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
