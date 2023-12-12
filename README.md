@@ -2,6 +2,10 @@
 
 Welcome to PromptCraft, a tool designed to enhance user's interaction with AI through improved prompt engineering. With PromptCraft, users may effectively boosting their AI literacy.
 
+## Demo
+
+Try out the demo [https://promptcraft.takasoap.xyz/](HERE).
+
 ## Introduction
 
 PromptCraft is an open-source, web-based application that aims to assist users in crafting better prompts to get the most out of AI language models like ChatGPT. It offers real-time feedback, improvements to prompts, and comparative analysis of AI responses.
