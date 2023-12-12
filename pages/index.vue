@@ -1,12 +1,12 @@
 <template>
     <div class="content">
-        <n-gradient-text class="title" type="success">PromptCraft</n-gradient-text>
+        <n-gradient-text class="title" type="success"> PromptCraft </n-gradient-text>
         <n-space class="main-body" vertical>
             <n-form inline>
                 <n-form-item label="Your Prompt">
                     <n-input
-                        class="textarea"
                         v-model:value="userPromptInput"
+                        class="textarea"
                         type="textarea"
                         show-feedback="false"
                         :autosize="autoSize"
@@ -17,8 +17,8 @@
                 <n-form-item label="Improved Prompt">
                     <n-spin :show="isPromptLoading" description="Crafting your prompt...">
                         <n-input
-                            class="textarea"
                             v-model:value="improvedPromptComputed"
+                            class="textarea"
                             type="textarea"
                             placeholder="Nothing Here"
                             show-feedback="false"
@@ -32,8 +32,8 @@
                 <n-form-item label="Response 1">
                     <n-spin :show="isFirstResLoading" description="Waiting Response...">
                         <n-input
-                            class="textarea"
                             v-model:value="userPromptResponseComputed"
+                            class="textarea"
                             type="textarea"
                             placeholder="Nothing Here"
                             :autosize="autoSize"
@@ -43,8 +43,8 @@
                 <n-form-item label="Response 2">
                     <n-spin :show="isSecondResLoading" description="Waiting Response...">
                         <n-input
-                            class="textarea"
                             v-model:value="improvedPromptResponseComputed"
+                            class="textarea"
                             type="textarea"
                             placeholder="Nothing Here"
                             :autosize="autoSize"
@@ -174,7 +174,7 @@ async function openaiRequest(systemPrompt: string, contentPrompt: string, isJson
                     { role: 'system', content: systemPrompt },
                     { role: 'user', content: contentPrompt }
                 ],
-                model: model
+                model
             });
 
             console.log(completion.choices[0].message.content);
@@ -263,7 +263,7 @@ function clearAll() {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: calc(100vh - 8em);
+    min-height: calc(100vh - 8em);
 }
 
 .textarea {

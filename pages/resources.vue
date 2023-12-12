@@ -1,7 +1,11 @@
 <template>
-    <div class="content">
-        <n-result status="404" title="In Progress..." description="Come back later!"></n-result>
-    </div>
+  <div class="content">
+    <n-result
+      status="404"
+      title="In Progress..."
+      description="Come back later!"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
