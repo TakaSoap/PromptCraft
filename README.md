@@ -45,7 +45,7 @@ To start the application, run the following command:
 ```bash
 npm run dev
 # or if you are using pnpm
-npm run dev
+pnpm run dev
 ```
 
 The PromptCraft web application should be accessible at `http://localhost:3000`.
