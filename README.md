@@ -1,75 +1,58 @@
-# Nuxt 3 Minimal Starter
+# PromptCraft
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Welcome to PromptCraft, a tool designed to enhance user's interaction with AI through improved prompt engineering. With PromptCraft, users may effectively boosting their AI literacy.
 
-## Setup
+## Introduction
 
-Make sure to install the dependencies:
+PromptCraft is an open-source, web-based application that aims to assist users in crafting better prompts to get the most out of AI language models like ChatGPT. It offers real-time feedback, improvements to prompts, and comparative analysis of AI responses.
+
+Users should bring their own OpenAI API keys.
+
+## Getting Started
+
+To get PromptCraft up and running on your local machine for development and testing purposes, follow these simple steps:
+
+### Setup
+
+To setup PromptCraft, clone the repository to your local machine using the following command:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+git clone https://github.com/TakaSoap/PromptCraft.git
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+Navigate to the PromptCraft directory:
 
 ```bash
-# npm
+cd PromptCraft
+```
+
+Install the required dependencies using npm:
+
+```bash
+npm i
+```
+
+Alternatively, if you prefer using pnpm, you can install the dependencies using:
+
+```bash
+pnpm i
+```
+
+### Running the Application
+
+To start the application, run the following command:
+
+```bash
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+# or if you are using pnpm
+npm run dev
 ```
 
-## Production
+The PromptCraft web application should be accessible at `http://localhost:3000`.
 
-Build the application for production:
+## Features
 
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- User-friendly interface for crafting and submitting prompts
+- Integration with OpenAI API for providing suggestions and enhancements
+- Comparative display of original and improved prompts along with AI-generated responses
+- Overall feedback system for reflection and learning
