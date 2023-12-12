@@ -141,7 +141,7 @@ const courses = [
         title: 'AI Literacy for Education',
         description:
             'An online course develop by HKU that teaches the basics and applications of artificial intelligence, especially generative AI, in education.',
-        link: 'https://tl.hku.hk/2023/08/ai-literacy-for-education/#:~:text=In%20an%20increasingly%20digitized%20world,to%20transform%20the%20learning%20experience.'
+        link: 'https://tl.hku.hk/2023/08/ai-literacy-for-education/'
     }
 ];
 
