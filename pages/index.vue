@@ -1,61 +1,124 @@
 <template>
     <div class="content">
         <n-gradient-text class="title" type="success"> PromptCraft </n-gradient-text>
-        <n-space class="main-body" vertical>
-            <n-form inline>
-                <n-form-item label="Your Prompt">
-                    <n-input
-                        v-model:value="userPromptInput"
-                        class="textarea"
-                        type="textarea"
-                        show-feedback="false"
-                        :autosize="autoSize"
-                        :validation-status="userInputStatus"
-                        :feedback="userInputFeedback"
-                    />
-                </n-form-item>
-                <n-form-item label="Improved Prompt">
-                    <n-spin :show="isPromptLoading" description="Crafting your prompt...">
+        <div class="form-small">
+            <n-grid cols="1 m:2" responsive="screen" x-gap="18" y-gap="8">
+                <n-gi>
+                    <n-form-item label="Your Prompt">
                         <n-input
-                            v-model:value="improvedPromptComputed"
+                            v-model:value="userPromptInput"
                             class="textarea"
                             type="textarea"
-                            placeholder="Nothing Here"
                             show-feedback="false"
                             :autosize="autoSize"
+                            :validation-status="userInputStatus"
+                            :feedback="userInputFeedback"
                         />
-                    </n-spin>
-                </n-form-item>
-            </n-form>
+                    </n-form-item>
+                </n-gi>
 
-            <n-form inline>
-                <n-form-item label="Response 1">
-                    <n-spin :show="isFirstResLoading" description="Waiting Response...">
+                <n-gi>
+                    <n-form-item label="Response 1">
+                        <n-spin style="width: 100%" :show="isFirstResLoading" description="Waiting Response...">
+                            <n-input
+                                v-model:value="userPromptResponseComputed"
+                                class="textarea"
+                                type="textarea"
+                                placeholder="Nothing Here"
+                                :autosize="autoSize"
+                            />
+                        </n-spin>
+                    </n-form-item>
+                </n-gi>
+
+                <n-gi>
+                    <n-form-item label="Improved Prompt">
+                        <n-spin style="width: 100%" :show="isPromptLoading" description="Crafting your prompt...">
+                            <n-input
+                                v-model:value="improvedPromptComputed"
+                                class="textarea"
+                                type="textarea"
+                                placeholder="Nothing Here"
+                                show-feedback="false"
+                                :autosize="autoSize"
+                            />
+                        </n-spin>
+                    </n-form-item>
+                </n-gi>
+
+                <n-gi>
+                    <n-form-item label="Response 2">
+                        <n-spin style="width: 100%" :show="isSecondResLoading" description="Waiting Response...">
+                            <n-input
+                                v-model:value="improvedPromptResponseComputed"
+                                class="textarea"
+                                type="textarea"
+                                placeholder="Nothing Here"
+                                :autosize="autoSize"
+                            />
+                        </n-spin>
+                    </n-form-item>
+                </n-gi>
+            </n-grid>
+        </div>
+
+        <n-space class="main-body" vertical>
+            <div class="form-large">
+                <n-form inline>
+                    <n-form-item label="Your Prompt">
                         <n-input
-                            v-model:value="userPromptResponseComputed"
+                            v-model:value="userPromptInput"
                             class="textarea"
                             type="textarea"
-                            placeholder="Nothing Here"
+                            show-feedback="false"
                             :autosize="autoSize"
+                            :validation-status="userInputStatus"
+                            :feedback="userInputFeedback"
                         />
-                    </n-spin>
-                </n-form-item>
-                <n-form-item label="Response 2">
-                    <n-spin :show="isSecondResLoading" description="Waiting Response...">
-                        <n-input
-                            v-model:value="improvedPromptResponseComputed"
-                            class="textarea"
-                            type="textarea"
-                            placeholder="Nothing Here"
-                            :autosize="autoSize"
-                        />
-                    </n-spin>
-                </n-form-item>
-            </n-form>
+                    </n-form-item>
+                    <n-form-item label="Improved Prompt">
+                        <n-spin :show="isPromptLoading" description="Crafting your prompt...">
+                            <n-input
+                                v-model:value="improvedPromptComputed"
+                                class="textarea"
+                                type="textarea"
+                                placeholder="Nothing Here"
+                                show-feedback="false"
+                                :autosize="autoSize"
+                            />
+                        </n-spin>
+                    </n-form-item>
+                </n-form>
 
-            <n-grid cols="10" style="margin-bottom: 2em" x-gap="18">
-                <n-gi span="3" offset="2">
-                    <n-button block secondary type="Error" @click="clearAll">
+                <n-form inline>
+                    <n-form-item label="Response 1">
+                        <n-spin :show="isFirstResLoading" description="Waiting Response...">
+                            <n-input
+                                v-model:value="userPromptResponseComputed"
+                                class="textarea"
+                                type="textarea"
+                                placeholder="Nothing Here"
+                                :autosize="autoSize"
+                            />
+                        </n-spin>
+                    </n-form-item>
+                    <n-form-item label="Response 2">
+                        <n-spin :show="isSecondResLoading" description="Waiting Response...">
+                            <n-input
+                                v-model:value="improvedPromptResponseComputed"
+                                class="textarea"
+                                type="textarea"
+                                placeholder="Nothing Here"
+                                :autosize="autoSize"
+                            />
+                        </n-spin>
+                    </n-form-item>
+                </n-form>
+            </div>
+
+            <n-grid cols="3 m:10" responsive="screen" style="margin-bottom: 2em" x-gap="18" y-gap="8">
+                <n-gi span="3" offset="0 m:2">
+                    <n-button block secondary type="error" @click="clearAll">
                         <template #icon>
                             <n-icon>
                                 <TrashBinOutline />
@@ -267,10 +330,58 @@ function clearAll() {
 }
 
 .textarea {
-    width: 30em;
+    min-width: 30em;
+    width: 100%;
 }
 
 .main-body {
     margin-bottom: 8rem;
+}
+
+.form-large {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-small {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .title {
+        /* Mobile margin */
+        margin: 0 0 1em 0;
+        font-size: 3em;
+    }
+    .content {
+        /* Mobile margin */
+        margin: 2em 8em 0;
+        min-height: calc(100vh - 4em);
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .main-body {
+        margin-bottom: 0rem;
+        width: 100%;
+    }
+    .form-large {
+        display: none;
+    }
+    .form-small {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        /* Mobile margin */
+        margin: 1em 2em 0;
+        min-height: calc(100vh - 4em);
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
 }
 </style>
