@@ -4,7 +4,7 @@ Welcome to PromptCraft, a tool designed to enhance user's interaction with AI th
 
 ## Demo
 
-Try out the demo [https://promptcraft.takasoap.xyz/](HERE).
+Try out the demo at [https://promptcraft.takasoap.xyz/].
 
 ## Introduction
 
