@@ -208,9 +208,9 @@ const promptImprovingUserPrompt = computed(() => {
 The user inputted prompt is above, now try to improve it and return in given JSON format.`;
 });
 
-const gpt3ModelName = 'gpt-3.5-turbo-1106';
+const gpt3ModelName = 'gpt-3.5-turbo';
 
-async function openaiRequest(systemPrompt: string, contentPrompt: string, isJsonMode: boolean = false, model: string = 'gpt-4-1106-preview') {
+async function openaiRequest(systemPrompt: string, contentPrompt: string, isJsonMode: boolean = false, model: string = 'gpt-4-turbo') {
     openai.apiKey = generalStore.apiKey;
 
     if (isJsonMode) {
@@ -220,7 +220,7 @@ async function openaiRequest(systemPrompt: string, contentPrompt: string, isJson
                     { role: 'system', content: systemPrompt },
                     { role: 'user', content: contentPrompt }
                 ],
-                model: 'gpt-4-1106-preview',
+                model: 'gpt-4-turbo',
                 response_format: { type: 'json_object' }
             });
 
@@ -258,7 +258,7 @@ function handleSubmit() {
 
     if (userPromptInput.value === '') {
         userInputStatus.value = 'error';
-        userInputFeedback.value = 'Please input your prompt first';
+        message.error('Please input your prompt first');
         return;
     }
 
@@ -317,7 +317,7 @@ function clearAll() {
 .title {
     font-size: 4em;
     font-weight: 700;
-    margin: 8rem 0 1em 0;
+    margin: 0rem 0 1em 0;
     user-select: none;
 }
 
@@ -327,11 +327,13 @@ function clearAll() {
     align-items: center;
     flex-direction: column;
     min-height: calc(100vh - 8em);
+    max-width: 100%;
+    margin: 4em;
 }
 
 .textarea {
     min-width: 30em;
-    width: 100%;
+    max-width: 30em;
 }
 
 .main-body {
@@ -372,6 +374,9 @@ function clearAll() {
     .form-small {
         display: block;
         width: 100%;
+    }
+    .textarea {
+        max-width: 100vw;
     }
 }
 
